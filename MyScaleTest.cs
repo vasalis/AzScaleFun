@@ -33,22 +33,20 @@ namespace AzScaleFun
             return new OkObjectResult(responseMessage);
         }
 
-        private static async Task<int> DoSomeHeavyWork()
+        private static Task<int> DoSomeHeavyWork()
         {
             var lIterations = 1000;
 
             for (int i = 0; i < lIterations; i++)
             {
-                await FindPrimeNumber(1000);
+                FindPrimeNumber(1000);
             }
 
-            return 0;
+            return Task.FromResult(0);
         }
 
-        private static async Task<long> FindPrimeNumber(int n)
+        private static long FindPrimeNumber(int n)
         {
-            await Task.Delay(100);
-
             int count = 0;
             long a = 2;
             while (count < n)
