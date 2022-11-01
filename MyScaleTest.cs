@@ -20,7 +20,7 @@ namespace AzScaleFun
         {
             var lStateTime = DateTime.UtcNow.Ticks;
 
-            await DoSomeHeavyWork();
+            await Task.Run(() => DoSomeHeavyWork());
 
             var lEndTime = DateTime.UtcNow.Ticks;
 
@@ -33,7 +33,7 @@ namespace AzScaleFun
             return new OkObjectResult(responseMessage);
         }
 
-        private static Task<int> DoSomeHeavyWork()
+        private static void DoSomeHeavyWork()
         {
             var lIterations = 1000;
 
@@ -41,8 +41,6 @@ namespace AzScaleFun
             {
                 FindPrimeNumber(1000);
             }
-
-            return Task.FromResult(0);
         }
 
         private static long FindPrimeNumber(int n)
